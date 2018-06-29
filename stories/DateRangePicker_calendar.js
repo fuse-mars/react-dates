@@ -228,6 +228,29 @@ storiesOf('DRP - Calendar Props', module)
       autoFocus
     />
   ))
+  .addWithInfo('with onClose handler event object', () => (
+    /*
+      Description:
+      React-dates closes the calendar, when user perform multiple actions
+      1. user presses Shift+Tab from startDate field
+      2. user presses Tab from endDate field
+      3. user presses Enter from a calendar day
+      4. user clicks on the of the DateRangePicker component
+      5. user clicks outside of the DateRangePicker component
+      All there actions trigger the onClose callback, but do not provide it with
+      the event object. This makes it hard for calling component to make decision on
+      how to procede once the calendar is closed
+      Example: move focus to desired element if user clicks on
+      an non-focusable element outside of DateRangePicker component.
+      So, providing this event object will help in this desicion making process.
+    */
+    <DateRangePickerWrapper
+      onClose={(dates, e) => {
+        action('onClose called with')(dates, `${e.type} - ${e.key}`);
+      }}
+      autoFocus
+    />
+  ))
   .addWithInfo('with no animation', () => (
     <DateRangePickerWrapper
       transitionDuration={0}

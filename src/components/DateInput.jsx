@@ -125,7 +125,7 @@ class DateInput extends React.Component {
     if (dateString[dateString.length - 1] === '?') {
       onKeyDownQuestionMark(e);
     } else {
-      this.setState({ dateString }, () => onChange(dateString));
+      this.setState({ dateString }, () => onChange(dateString, e));
     }
   }
 

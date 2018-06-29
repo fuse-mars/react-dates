@@ -199,7 +199,7 @@ class DateRangePicker extends React.Component {
     });
 
     onFocusChange(null);
-    onClose({ startDate, endDate });
+    onClose({ startDate, endDate }, event);
   }
 
   onDateRangePickerInputFocus(focusedInput) {
