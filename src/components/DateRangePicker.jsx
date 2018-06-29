@@ -376,6 +376,7 @@ class DateRangePicker extends React.Component {
       initialVisibleMonth,
       hideKeyboardShortcutsPanel,
       customCloseIcon,
+      onOpen,
       onCalendarKeyDown,
       onClose,
       phrases,
@@ -394,7 +395,7 @@ class DateRangePicker extends React.Component {
 
     const onOutsideClick = (!withFullScreenPortal && withPortal)
       ? this.onOutsideClick
-      : undefined;
+      : () => {};
     const initialVisibleMonthThunk = initialVisibleMonth || (
       () => (startDate || endDate || moment())
     );
@@ -437,6 +438,7 @@ class DateRangePicker extends React.Component {
           onNextMonthClick={onNextMonthClick}
           onDatesChange={onDatesChange}
           onFocusChange={onFocusChange}
+          onOpen={onOpen}
           onCalendarKeyDown={onCalendarKeyDown}
           onClose={onClose}
           focusedInput={focusedInput}
@@ -529,7 +531,7 @@ class DateRangePicker extends React.Component {
 
     const { isDateRangePickerInputFocused } = this.state;
 
-    const onOutsideClick = (!withPortal && !withFullScreenPortal) ? this.onOutsideClick : undefined;
+    const onOutsideClick = (!withPortal && !withFullScreenPortal) ? this.onOutsideClick : () => {};
 
     const hideFang = verticalSpacing < FANG_HEIGHT_PX;
 

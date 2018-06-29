@@ -47,6 +47,7 @@ const propTypes = forbidExtraProps({
   renderMonthText: mutuallyExclusiveProps(PropTypes.func, 'renderMonthText', 'renderMonthElement'),
   renderCalendarDay: PropTypes.func,
   renderDayContents: PropTypes.func,
+  setSelectedDayRef: PropTypes.func,
   translationValue: PropTypes.number,
   renderMonthElement: mutuallyExclusiveProps(PropTypes.func, 'renderMonthText', 'renderMonthElement'),
   daySize: nonNegativeInteger,
@@ -249,6 +250,7 @@ class CalendarMonthGrid extends React.Component {
       renderDayContents,
       renderMonthElement,
       onMonthTransitionEnd,
+      setSelectedDayRef,
       firstDayOfWeek,
       focusedDate,
       isFocused,
@@ -337,6 +339,7 @@ class CalendarMonthGrid extends React.Component {
                 renderCalendarDay={renderCalendarDay}
                 renderDayContents={renderDayContents}
                 renderMonthElement={renderMonthElement}
+                setSelectedDayRef={setSelectedDayRef}
                 firstDayOfWeek={firstDayOfWeek}
                 daySize={daySize}
                 focusedDate={isVisible ? focusedDate : null}

@@ -25,6 +25,7 @@ export default {
 
   onInputKeyDown: PropTypes.func,
   onClose: PropTypes.func,
+  onOpen: PropTypes.func,
   onCalendarKeyDown: PropTypes.func,
 
   // input related props

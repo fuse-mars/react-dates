@@ -97,6 +97,7 @@ const propTypes = forbidExtraProps({
   isFocused: PropTypes.bool,
   getFirstFocusableDay: PropTypes.func,
   onBlur: PropTypes.func,
+  onOpen: PropTypes.func,
   onCalendarKeyDown: PropTypes.func,
   showKeyboardShortcuts: PropTypes.bool,
 
@@ -152,6 +153,7 @@ export const defaultProps = {
   // accessibility props
   isFocused: false,
   getFirstFocusableDay: null,
+  onOpen() {},
   onCalendarKeyDown() {},
   onBlur() {},
   showKeyboardShortcuts: false,
@@ -216,6 +218,7 @@ class DayPicker extends React.Component {
 
     this.setCalendarInfoRef = this.setCalendarInfoRef.bind(this);
     this.setContainerRef = this.setContainerRef.bind(this);
+    this.setSelectedDayRef = this.setSelectedDayRef.bind(this);
     this.setTransitionContainerRef = this.setTransitionContainerRef.bind(this);
     this.setMonthTitleHeight = this.setMonthTitleHeight.bind(this);
   }
@@ -232,6 +235,14 @@ class DayPicker extends React.Component {
     }
 
     this.setCalendarMonthWeeks(currentMonth);
+
+    // allow calling components to perform tasks on the calendar ui
+    // (example "focus on selected date")
+    // this.setMonthTitleHeight gets called in a setTimeout, which seems to
+    // prevent DOM manipulation
+    // ex: it prevents "selected CalendarDay" from being focused
+    // so we wrap the onOpen callback to make sure calling component will get expected results
+    setTimeout(() => this.props.onOpen({ selectedDayRef: this.selectedDayRef }), 0);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -588,6 +599,10 @@ class DayPicker extends React.Component {
 
   setCalendarInfoRef(ref) {
     this.calendarInfo = ref;
+  }
+
+  setSelectedDayRef(ref) {
+    this.selectedDayRef = ref;
   }
 
   setTransitionContainerRef(ref) {
@@ -1038,6 +1053,7 @@ class DayPicker extends React.Component {
                   renderCalendarDay={renderCalendarDay}
                   renderDayContents={renderDayContents}
                   renderMonthElement={renderMonthElement}
+                  setSelectedDayRef={this.setSelectedDayRef}
                   onMonthTransitionEnd={this.updateStateAfterMonthTransition}
                   monthFormat={monthFormat}
                   daySize={daySize}

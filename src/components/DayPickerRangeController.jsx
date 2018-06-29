@@ -50,6 +50,7 @@ const propTypes = forbidExtraProps({
   focusedInput: FocusedInputShape,
   onFocusChange: PropTypes.func,
   onClose: PropTypes.func,
+  onOpen: PropTypes.func,
   onCalendarKeyDown: PropTypes.func,
 
   keepOpenOnDateSelect: PropTypes.bool,
@@ -1029,6 +1030,7 @@ export default class DayPickerRangeController extends React.Component {
       renderCalendarInfo,
       renderMonthElement,
       calendarInfoPosition,
+      onOpen,
       onCalendarKeyDown,
       onBlur,
       isFocused,
@@ -1077,6 +1079,7 @@ export default class DayPickerRangeController extends React.Component {
         hideKeyboardShortcutsPanel={hideKeyboardShortcutsPanel}
         isFocused={isFocused}
         getFirstFocusableDay={this.getFirstFocusableDay}
+        onOpen={onOpen}
         onCalendarKeyDown={onCalendarKeyDown}
         onBlur={onBlur}
         showKeyboardShortcuts={showKeyboardShortcuts}

@@ -24,6 +24,7 @@ const propTypes = forbidExtraProps({
   onDayMouseEnter: PropTypes.func,
   onDayMouseLeave: PropTypes.func,
   renderDayContents: PropTypes.func,
+  setSelectedDayRef: PropTypes.func,
   ariaLabelFormat: PropTypes.string,
 
   // internationalization
@@ -95,6 +96,9 @@ class CalendarDay extends React.Component {
 
   setButtonRef(ref) {
     this.buttonRef = ref;
+    if (this.props.tabIndex === 0) {
+      this.props.setSelectedDayRef(ref);
+    }
   }
 
   render() {

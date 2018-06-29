@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { VERTICAL_ORIENTATION, ANCHOR_RIGHT, OPEN_UP } from '../src/constants';
 
@@ -238,5 +239,37 @@ storiesOf('DRP - Calendar Props', module)
       verticalSpacing={0}
       autoFocus
     />
+  ))
+  .addWithInfo('with onOpen handler', () => (
+    <div>
+      {/*
+        Description:
+        For a11y reasons, we usually want to perform DOM level tasks on the calendar ui once
+        it has been fully loaded/attached to the DOM.
+        Example: sending focus to selected date when calendar opens.
+
+        Comment:
+        Focusing on selected date inside `CalendarDay.componentDidMount`, does not work because of
+        use of setTimeout inside `CalendarMonth.componentDidMount`,
+        so users will be able to manually set this focus inside `onOpen` callback
+
+        onOpen is called with a metaData object that contains important information about
+        the open calendar
+        Example: metaData = { selectedDayRef }
+      */}
+      <p>Use case: Moving focus on Calendar in fullscreen mode.</p>
+      <DateRangePickerWrapper
+        readOnly
+        withFullScreenPortal
+        initialStartDate={moment().add(3, 'days')}
+        initialEndDate={moment().add(10, 'days')}
+        showClearDates
+        regular
+        onOpen={({ selectedDayRef }) => {
+          selectedDayRef.focus();
+          action('onOpen called with selectedDay')(selectedDayRef.textContent);
+        }}
+      />
+    </div>
   ));
 
