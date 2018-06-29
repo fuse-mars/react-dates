@@ -60,6 +60,7 @@ const propTypes = forbidExtraProps({
   onDatesChange: PropTypes.func,
   onKeyDownArrowDown: PropTypes.func,
   onKeyDownQuestionMark: PropTypes.func,
+  onInputKeyDown: PropTypes.func,
 
   customInputIcon: PropTypes.node,
   customArrowIcon: PropTypes.node,
@@ -277,6 +278,7 @@ export default class DateRangePickerInputController extends React.Component {
       phrases,
       onKeyDownArrowDown,
       onKeyDownQuestionMark,
+      onInputKeyDown,
       isRTL,
       noBorder,
       block,
@@ -321,6 +323,7 @@ export default class DateRangePickerInputController extends React.Component {
         screenReaderMessage={screenReaderMessage}
         onKeyDownArrowDown={onKeyDownArrowDown}
         onKeyDownQuestionMark={onKeyDownQuestionMark}
+        onInputKeyDown={onInputKeyDown}
         isRTL={isRTL}
         noBorder={noBorder}
         block={block}

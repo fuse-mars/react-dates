@@ -45,6 +45,7 @@ const propTypes = forbidExtraProps({
 
   onKeyDownArrowDown: PropTypes.func,
   onKeyDownQuestionMark: PropTypes.func,
+  onInputKeyDown: PropTypes.func,
 
   // accessibility
   isFocused: PropTypes.bool, // describes actual DOM focus
@@ -72,6 +73,7 @@ const defaultProps = {
 
   onKeyDownArrowDown() {},
   onKeyDownQuestionMark() {},
+  onInputKeyDown() {},
 
   // accessibility
   isFocused: false,
@@ -140,6 +142,7 @@ class DateInput extends React.Component {
       onKeyDownTab,
       onKeyDownArrowDown,
       onKeyDownQuestionMark,
+      onInputKeyDown,
     } = this.props;
     const { key } = e;
 
@@ -154,6 +157,9 @@ class DateInput extends React.Component {
     } else if (key === '?') {
       e.preventDefault();
       onKeyDownQuestionMark(e);
+    } else {
+      // let colling controller decide on what to do with unhandlered keypresses
+      onInputKeyDown(e);
     }
   }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import isInclusivelyBeforeDay from '../src/utils/isInclusivelyBeforeDay';
 import isInclusivelyAfterDay from '../src/utils/isInclusivelyAfterDay';
@@ -178,4 +179,26 @@ storiesOf('DRP - Input Props', module)
       showClearDates
       regular
     />
+  ))
+  .addWithInfo('with onInputKeyDown handler', () => (
+    <div>
+      {/*
+        Description:
+        React-dates handles 'Tab'(on startDate), 'Shift+Tab'(endDate), 'ArrowDown',
+        '?' key events internally.
+        However, it does not provide a way for calling components to take actions on
+        unhandled key events (ex: Escape, Tab from startDate, ....).
+        So, `onInputKeyDown` prop will act as a handler for all unhandled key events
+      */}
+      <p>Use case: Close Calendar when escape key is pressed from startDate input field</p>
+      <DateRangePickerWrapper
+        startDateId="DepartureDate"
+        endDateId="ReturnDate"
+        initialStartDate={moment().add(3, 'days')}
+        initialEndDate={moment().add(10, 'days')}
+        showClearDates
+        regular
+        onInputKeyDown={action('onInputKeyDown called')}
+      />
+    </div>
   ));

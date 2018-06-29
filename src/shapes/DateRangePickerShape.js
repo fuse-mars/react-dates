@@ -23,6 +23,7 @@ export default {
   focusedInput: FocusedInputShape,
   onFocusChange: PropTypes.func.isRequired,
 
+  onInputKeyDown: PropTypes.func,
   onClose: PropTypes.func,
 
   // input related props

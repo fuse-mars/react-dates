@@ -513,6 +513,7 @@ class DateRangePicker extends React.Component {
       displayFormat,
       reopenPickerOnClearDates,
       keepOpenOnDateSelect,
+      onInputKeyDown,
       onDatesChange,
       onClose,
       isRTL,
@@ -569,6 +570,7 @@ class DateRangePicker extends React.Component {
             onFocusChange={this.onDateRangePickerInputFocus}
             onKeyDownArrowDown={this.onDayPickerFocus}
             onKeyDownQuestionMark={this.showKeyboardShortcutsPanel}
+            onInputKeyDown={onInputKeyDown}
             onClose={onClose}
             phrases={phrases}
             screenReaderMessage={screenReaderInputMessage}
