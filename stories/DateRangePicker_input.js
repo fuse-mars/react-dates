@@ -201,27 +201,4 @@ storiesOf('DRP - Input Props', module)
         onInputKeyDown={action('onInputKeyDown called')}
       />
     </div>
-  ))
-  .addWithInfo('with onCalendarKeyDown handler', () => (
-    <div>
-      {/*
-        Description:
-        For a11y reasons, we want to make sure that calendar is always closed when
-        focus is outside the DateRangePicker component.
-        However, pressing Tab from the Calendar eventually
-        sends focus outside of the DateRangePicker componene without closing the Calendar.
-        So, `onCalendarKeyDown` prop will act as a handler for
-        the Tab key and all other unhandled key events
-      */}
-      <p>Use case: Focus trap inside the Calendar.</p>
-      <DateRangePickerWrapper
-        startDateId="DepartureDate"
-        endDateId="ReturnDate"
-        initialStartDate={moment().add(3, 'days')}
-        initialEndDate={moment().add(10, 'days')}
-        showClearDates
-        regular
-        onCalendarKeyDown={action('onCalendarKeyDown called')}
-      />
-    </div>
   ));
