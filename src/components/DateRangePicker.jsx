@@ -376,6 +376,7 @@ class DateRangePicker extends React.Component {
       initialVisibleMonth,
       hideKeyboardShortcutsPanel,
       customCloseIcon,
+      onCalendarKeyDown,
       onClose,
       phrases,
       dayAriaLabelFormat,
@@ -436,6 +437,7 @@ class DateRangePicker extends React.Component {
           onNextMonthClick={onNextMonthClick}
           onDatesChange={onDatesChange}
           onFocusChange={onFocusChange}
+          onCalendarKeyDown={onCalendarKeyDown}
           onClose={onClose}
           focusedInput={focusedInput}
           startDate={startDate}

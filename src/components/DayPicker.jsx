@@ -97,6 +97,7 @@ const propTypes = forbidExtraProps({
   isFocused: PropTypes.bool,
   getFirstFocusableDay: PropTypes.func,
   onBlur: PropTypes.func,
+  onCalendarKeyDown: PropTypes.func,
   showKeyboardShortcuts: PropTypes.bool,
 
   // internationalization
@@ -151,6 +152,7 @@ export const defaultProps = {
   // accessibility props
   isFocused: false,
   getFirstFocusableDay: null,
+  onCalendarKeyDown() {},
   onBlur() {},
   showKeyboardShortcuts: false,
 
@@ -410,6 +412,8 @@ class DayPicker extends React.Component {
         break;
 
       default:
+        // let colling controller decide on what to do with unhandlered keypresses
+        this.props.onCalendarKeyDown(e);
         break;
     }
 
